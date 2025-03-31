@@ -73,6 +73,14 @@ contract Twitter {
         emit TweetUnliked(msg.sender, author, _id, tweets[author][_id].likes);
     }
 
+    function getTotalLikes(address _author) external view returns (uint256) {
+        uint256 totalLikes;
+        for (uint256 i = 0; i < tweets[_author].length; i++) {
+            totalLikes += tweets[_author][i].likes;
+        }
+        return totalLikes;
+    }
+
     function getTweet(
         address _owner,
         uint256 _i
